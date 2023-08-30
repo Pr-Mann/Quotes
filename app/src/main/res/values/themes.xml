@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Quotes" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.Quotes" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
 
     <style name="Theme.AppSplash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher_foreground</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher</item>
         <item name="postSplashScreenTheme">@style/Theme.Quotes</item>
 
         <!-- Status bar and Nav bar configs -->
-        <item name="android:statusBarColor">@color/colorPrimary</item>
-        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/black</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>

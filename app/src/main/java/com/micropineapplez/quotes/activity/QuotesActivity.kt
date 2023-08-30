@@ -16,11 +16,9 @@ class QuotesActivity : ComponentActivity() {
 
         installSplashScreen().apply {
             setKeepOnScreenCondition {
-                return@setKeepOnScreenCondition viewModel.isLoading.value == true
+                return@setKeepOnScreenCondition viewModel.isLoading.value
             }
         }
-
-        viewModel.getAllQuotes()
 
         setContent {
             QuotesActivityView()

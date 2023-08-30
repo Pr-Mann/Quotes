@@ -1,23 +1,23 @@
 package com.micropineapplez.quotes.repository
 
-import com.google.firebase.database.DatabaseReference
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.google.firebase.database.FirebaseDatabase
 import com.micropineapplez.quotes.model.Quote
-import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 
 class QuotesRepository(
-    private val rootRef: DatabaseReference = FirebaseDatabase.getInstance().reference,
+    private val database: FirebaseDatabase = FirebaseDatabase.getInstance()
 ) {
-    suspend fun getAllQuotes(): List<Quote> {
-        val quotesRef: DatabaseReference = rootRef.child("quotes")
-        val quotes = mutableListOf<Quote>()
-        try {
-            quotes.addAll(quotesRef.get().await().children.map { snapShot ->
-                snapShot.getValue(Quote::class.java)!!
-            })
-        } catch (e: Exception) {
-            quotes.addAll(emptyList())
-        }
-        return quotes
+    fun getAllQuotes(): Flow<PagingData<Quote>> {
+        val pagingConfig = PagingConfig(pageSize = 10, enablePlaceholders = false)
+
+        return Pager(
+            config = pagingConfig,
+            pagingSourceFactory = { QuotesPagingSource(database) }
+        ).flow.flowOn(Dispatchers.IO)
     }
 }

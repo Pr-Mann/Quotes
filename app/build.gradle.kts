@@ -71,4 +71,7 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
     implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
     implementation("com.google.firebase:firebase-database-ktx")
+    implementation("androidx.paging:paging-compose:3.2.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation("androidx.compose.runtime:runtime-livedata:1.5.0")
 }
